@@ -1,22 +1,17 @@
 import { FaMapMarkerAlt } from "react-icons/fa";
 import logo from "../../assets/energyLogo.png";
-
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 const HotJobCard = ({ job }) => {
   const {
     title,
     location,
-    jobType,
-    category,
-    applicationDeadline,
     salaryRange,
     description,
     company,
     requirements,
-    responsibilities,
-    status,
     company_logo,
-    hr_email,
-    hr_name,
+    _id,
   } = job;
   return (
     <div className="card card-compact bg-base-100 shadow-xl border">
@@ -52,7 +47,15 @@ const HotJobCard = ({ job }) => {
           <p>
             Salary: {salaryRange.min} - {salaryRange.max} {salaryRange.currency}
           </p>
-          <button className="btn btn-secondary">Apply Now</button>
+          <Link to={`/jobs/${_id}`}>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="btn btn-secondary"
+            >
+              Apply Now
+            </motion.button>
+          </Link>
         </div>
       </div>
     </div>
