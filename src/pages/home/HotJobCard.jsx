@@ -66,7 +66,7 @@ const HotJobCard = ({ job }) => {
               whileTap={{ scale: 0.95 }}
               className="btn btn-secondary"
             >
-              Apply Now
+              Job Details
             </motion.button>
           </Link>
         </div>
