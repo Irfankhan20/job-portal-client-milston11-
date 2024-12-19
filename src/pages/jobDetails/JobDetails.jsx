@@ -2,6 +2,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import { motion } from "framer-motion";
 const JobDetails = () => {
   const {
+    _id,
     title,
     location,
     jobType,
@@ -29,7 +30,7 @@ const JobDetails = () => {
           </p>
         </div>
         <div className="flex gap-5 mt-5">
-          <Link>
+          <Link to={`/jobApply/${_id}`}>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
