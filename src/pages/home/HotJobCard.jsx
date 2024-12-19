@@ -14,7 +14,20 @@ const HotJobCard = ({ job }) => {
     _id,
   } = job;
   return (
-    <div className="card card-compact bg-base-100 shadow-xl border">
+    <motion.div
+      whileHover={{
+        scale: 1.1,
+        y: -10,
+        backgroundColor: "#f0f8ff",
+        boxShadow: "0px 15px 25px rgba(0, 0, 0, 0.3)",
+        transition: {
+          duration: 0.3,
+          ease: "easeInOut",
+        },
+      }}
+      whileTap={{ scale: 0.95 }}
+      className="card p-4 hover:cursor-pointer card-compact bg-base-100 shadow-xl border"
+    >
       <div className="flex justify-between gap-2 m-2">
         <figure>
           <img className="w-16" src={company_logo} alt="Shoes" />
@@ -58,7 +71,7 @@ const HotJobCard = ({ job }) => {
           </Link>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
