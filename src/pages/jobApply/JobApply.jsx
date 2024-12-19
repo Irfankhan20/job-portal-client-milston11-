@@ -19,6 +19,16 @@ const JobApply = () => {
       github,
       resume,
     };
+
+    fetch("http://localhost:5000/applications", {
+      method: "POST",
+      headers: {
+        "content-Type": "application/json",
+      },
+      body: JSON.stringify(jobApplication),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
   return (
     <div className="card bg-base-100 mt-24 w-[900px] p-10 mx-auto border border-pink-500 shadow-2xl">
