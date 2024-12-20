@@ -12,7 +12,7 @@ const Navbar = () => {
       .then((result) => {
         console.log(result.user);
       })
-      .catch((error) => console.error(error)); // Fixed error handling
+      .catch((error) => console.error(error));
   };
 
   const navlinks = (
@@ -26,13 +26,13 @@ const Navbar = () => {
           Home
         </motion.button>
       </Link>
-      <Link to="/products">
+      <Link to="/myApplications">
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           className="btn"
         >
-          Products
+          My Applications
         </motion.button>
       </Link>
     </>

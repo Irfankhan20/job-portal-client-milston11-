@@ -1,9 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import AuthContext from "../../context/authContext/AuthContext";
+import Swal from "sweetalert2";
+
 const JobApply = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,7 +31,19 @@ const JobApply = () => {
       body: JSON.stringify(jobApplication),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Apply Successfully!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        form.reset();
+        navigate("/myApplications");
+      });
   };
   return (
     <div className="card bg-base-100 mt-24 w-[900px] p-10 mx-auto border border-pink-500 shadow-2xl">
