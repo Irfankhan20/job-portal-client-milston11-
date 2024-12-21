@@ -21,7 +21,7 @@ const Navbar = () => {
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          className="btn"
+          className="mr-2 btn"
         >
           Home
         </motion.button>
@@ -30,9 +30,18 @@ const Navbar = () => {
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          className="btn"
+          className="mr-2 btn"
         >
           My Applications
+        </motion.button>
+      </Link>
+      <Link to="/addJob">
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          className="btn"
+        >
+          Add Job
         </motion.button>
       </Link>
     </>
