@@ -1,10 +1,12 @@
 // import { motion } from "framer-motion";
-
-import { useContext } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useContext, useState } from "react";
 import Swal from "sweetalert2";
 import AuthContext from "../../context/authContext/AuthContext";
 
 const AddJob = () => {
+  const [applicationDeadline, setApplicationDeadline] = useState(null);
   const { user } = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -192,19 +194,16 @@ const AddJob = () => {
         {/* row 4 */}
         <div className="flex flex-col md:flex-row gap-4 mt-4">
           {/* applicationDeadline box */}
-          <div className="w-full md:w-1/2">
-            <div className="flex flex-col">
-              <label htmlFor="foodCategory" className="mb-1">
-                ApplicationDeadline
-              </label>
-              <input
-                name="applicationDeadline"
-                required
-                placeholder="Enter ApplicationDeadline"
-                type="text"
-                className="px-4 py-2 border rounded focus:outline-[#E21B70]"
-              />
-            </div>
+          <div className="w-full flex flex-col md:w-1/2 ">
+            <label className="mb-1">Application Deadline</label>
+            <DatePicker
+              name="applicationDeadline"
+              selected={applicationDeadline}
+              onChange={(date) => setApplicationDeadline(date)}
+              dateFormat="yyyy-MM-dd"
+              placeholderText="Select Deadline"
+              className="px-4 py-2 border rounded focus:outline-[#E21B70]"
+            />
           </div>
 
           {/* company name box */}

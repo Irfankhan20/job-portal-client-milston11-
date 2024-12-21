@@ -44,6 +44,15 @@ const Navbar = () => {
           Add Job
         </motion.button>
       </Link>
+      <Link to="/myPostedJob">
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          className="btn"
+        >
+          My Posted Jobs
+        </motion.button>
+      </Link>
     </>
   );
 
