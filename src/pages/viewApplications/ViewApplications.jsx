@@ -1,7 +1,31 @@
 import { Link, useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ViewApplications = () => {
   const applicationCount = useLoaderData();
+  const handleStatus = (e, id) => {
+    console.log(e.target.value, id);
+    const data = {
+      status: e.target.value,
+    };
+    fetch(`https://job-portal-sever-lilac.vercel.app/applications/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            title: "Applicant Status Changed Successfully!",
+            icon: "success",
+            draggable: true,
+          });
+        }
+      });
+  };
   return (
     <div className="w-11/12 mx-auto">
       <h1 className="text-2xl font-bold mb-8 mt-24">
@@ -31,6 +55,7 @@ const ViewApplications = () => {
                 <td>{job.resume}</td>
                 <td>
                   <select
+                    onChange={(e) => handleStatus(e, job._id)}
                     defaultValue={job.status || "Change Status"}
                     className="select select-bordered w-full max-w-xs"
                   >

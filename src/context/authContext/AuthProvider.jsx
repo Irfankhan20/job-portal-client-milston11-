@@ -9,6 +9,7 @@ import {
   signOut,
 } from "firebase/auth";
 import auth from "../../components/firebase/firebase.config";
+import axios from "axios";
 
 const provider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
@@ -38,7 +39,30 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
+      if (currentUser?.email) {
+        const userInfo = { email: currentUser?.email };
+        axios
+          .post("https://job-portal-sever-lilac.vercel.app/jwt", userInfo, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log("logout", res.data);
+            setLoading(false);
+          });
+      } else {
+        axios
+          .post(
+            "https://job-portal-sever-lilac.vercel.app/logout",
+            {},
+            {
+              withCredentials: true,
+            }
+          )
+          .then((res) => {
+            console.log("logout", res.data);
+            setLoading(false);
+          });
+      }
     });
     return () => {
       unsubscribe();

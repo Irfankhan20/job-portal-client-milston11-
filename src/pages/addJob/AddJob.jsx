@@ -19,7 +19,7 @@ const AddJob = () => {
     newJob.responsibilities = newJob.responsibilities.split("\n");
     console.log(newJob);
 
-    fetch("http://localhost:5000/jobs", {
+    fetch("https://job-portal-sever-lilac.vercel.app/jobs", {
       method: "POST",
       headers: {
         "content-Type": "application/json",
@@ -34,7 +34,6 @@ const AddJob = () => {
             icon: "success",
             draggable: true,
           });
-          //   formData.reset();
         }
       });
   };

@@ -1,14 +1,17 @@
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/authContext/AuthContext";
 
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+
 const MyApplications = () => {
   const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
   const [jobs, setJobs] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/application?email=${user.email}`)
-      .then((res) => res.json())
-      .then((data) => setJobs(data));
-  }, [user.email]);
+    axiosSecure
+      .get(`/application?email=${user.email}`)
+      .then((res) => setJobs(res.data));
+  }, [axiosSecure, user.email]);
   return (
     <div className="w-11/12 mx-auto pt-8">
       <h1 className="text-2xl font-semibold">
